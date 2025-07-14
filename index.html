@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nyi Nyi Linn</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8fafc;
+      color: #1e293b;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    nav {
+      background-color: #1e3a8a;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .dark-mode {
+      background-color: #0f172a;
+      color: #e2e8f0;
+    }
+    .dark-mode nav,
+    .dark-mode footer {
+      background-color: #1e293b;
+    }
+    .dark-mode .project-card {
+      background-color: #1e293b;
+      color: #e2e8f0;
+      box-shadow: none; /* optional: reduce shadow in dark mode */
+    }
+    .resume-button {
+      margin-top: 1rem;
+      display: inline-block;
+      background-color: #0ea5e9;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+    .resume-button:hover {
+      background-color: #0284c7;
+    }
+    .dark-toggle {
+      position: fixed;
+      top: 5rem;
+      right: 1rem;
+      z-index: 1000;
+      user-select: none;
+      /* Removed background to make transparent */
+      padding: 0.3rem 0.3rem;
+      border-radius: 6px;
+      font-weight: 400;
+      color: inherit;
+      font-size: 12px;
+    }
+    .dark-toggle input {
+      margin-right: 0.3rem;
+      vertical-align: middle;
+      cursor: pointer;
+    }
+    header {
+      background: linear-gradient(120deg, #0f172a, #1e40af);
+      color: white;
+      padding: 4rem 1rem;
+      text-align: center;
+    }
+    .profile-pic {
+      display: block;
+      margin: 0 auto 1rem;
+      border-radius: 50%;
+      border: 4px solid #0ea5e9;
+      box-shadow: 0 4px 10px rgba(14, 165, 233, 0.4);
+      object-fit: cover;
+      width: 150px;
+      height: 150px;
+    }
+    section {
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    h2 {
+      font-size: 2rem;
+      border-bottom: 2px solid #2563eb;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .project-card {
+      background: white;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      max-width: auto;
+      color: #1e293b;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .swiper {
+      width: 100%;
+      padding: 2rem 0;
+    }
+    .swiper-slide {
+      display: flex;
+      justify-content: center;
+    }
+    #contact ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+    #contact ul li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1rem;
+    }
+    #contact ul li a {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.3s;
+    }
+    #contact ul li a:hover {
+      color: #0ea5e9;
+    }
+    #contact ul li img {
+      width: 24px;
+      height: 24px;
+      vertical-align: middle;
+      transition: filter 0.3s;
+      filter: invert(0.1);
+    }
+    #contact ul li a:hover img {
+      filter: invert(0.5) sepia(1) saturate(5) hue-rotate(180deg);
+    }
+    .dark-mode #contact ul li img {
+      filter: invert(1) brightness(1.2) contrast(1.1) !important;
+    }
+    .skill-bar {
+      background: #e5e7eb;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+      height: 16px;
+      overflow: hidden;
+    }
+    .skill-bar-fill {
+      height: 100%;
+      color: white;
+      font-size: 12px;
+      line-height: 16px;
+      text-align: right;
+      padding-right: 5px;
+      border-radius: 4px;
+      background-color: #0ea5e9;
+      transition: width 1s ease-in-out;
+      white-space: nowrap;
+    }
+    .dark-mode .skill-bar {
+      background: #1e293b;
+    }
+    .dark-mode .skill-bar-fill {
+      background-color: #38bdf8;
+    }
+    ul.experience-list {
+      padding-left: 1.2rem;
+      list-style-type: disc;
+    }
+    ul.experience-list li {
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="dark-toggle">
+    <label><input type="checkbox" id="darkToggle" /> Dark Mode</label>
+  </div>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <header id="home">
+    <img src="profile.png" alt="Nyi Linn Profile" class="profile-pic" />
+    <h1>Nyi Linn</h1>
+    <p>Full Stack Developer | Software Craftsman</p>
+    <a href="resume.pdf" class="resume-button" download>Download Resume</a>
+  </header>
+
+  <section id="about">
+    <h2>About</h2>
+    <p>
+      I am a passionate software developer with experience in building full-stack web applications using modern technologies like Spring Boot, Angular, and JavaScript. I love solving complex problems and creating beautiful user experiences.
+    </p>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="project-card">
+            <h3>Interactive Portfolio</h3>
+            <p>A responsive, animated portfolio site built with HTML, CSS, and JavaScript to showcase skills and projects.</p>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="project-card">
+            <h3>Job Evaluation System</h3>
+            <p>An enterprise web solution developed with Spring Boot and Angular to manage employee performance evaluations.</p>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="project-card">
+            <h3>Secure Wallet API</h3>
+            <p>A secure RESTful API with encryption, OTP validation, and token-based authentication built using Spring and Redis.</p>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2>Work Experience</h2>
+    <ul class="experience-list">
+      <li>
+        <h3>Senior Java Developer - XYZ Solutions</h3>
+        <p><strong>Duration:</strong> Jan 2021 - Present</p>
+        <p>Developed secure, scalable backend services using Spring Boot and integrated REST APIs with frontend Angular applications.</p>
+      </li>
+      <li>
+        <h3>Frontend Developer - ABC Tech</h3>
+        <p><strong>Duration:</strong> Jun 2019 - Dec 2020</p>
+        <p>Built responsive interfaces with HTML, CSS, and JavaScript. Worked closely with UI/UX designers and backend teams.</p>
+      </li>
+    </ul>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div>
+      <label>Java</label>
+      <div class="skill-bar"><div class="skill-bar-fill" style="width: 90%;">90%</div></div>
+      <!-- <label>JavaScript</label>
+      <div class="skill-bar"><div class="skill-bar-fill" style="width: 80%;">80%</div></div> -->
+      <label>HTML &amp; CSS</label>
+      <div class="skill-bar"><div class="skill-bar-fill" style="width: 85%;">85%</div></div>
+      <label>Spring Boot</label>
+      <div class="skill-bar"><div class="skill-bar-fill" style="width: 88%;">88%</div></div>
+      <label>Angular</label>
+      <div class="skill-bar"><div class="skill-bar-fill" style="width: 75%;">75%</div></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Feel free to reach out to me through the following platforms:</p>
+    <ul>
+      <li>
+        <a href="tel:+959123456789">
+          <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone" /> +95 912 345 6789
+        </a>
+      </li>
+      <li>
+        <a href="https://facebook.com/nyilinn" target="_blank" rel="noopener">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/facebook.svg" alt="Facebook" /> Facebook
+        </a>
+      </li>
+      <li>
+        <a href="https://instagram.com/nyilinn" target="_blank" rel="noopener">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/instagram.svg" alt="Instagram" /> Instagram
+        </a>
+      </li>
+      <li>
+        <a href="https://linkedin.com/in/nyilinn" target="_blank" rel="noopener">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linkedin.svg" alt="LinkedIn" /> LinkedIn
+        </a>
+      </li>
+      <li>
+        <a href="mailto:nyilinn.dev@example.com">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/maildotru.svg" alt="Email" /> nyilinn.dev@example.com
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <footer>
+    <p style="text-align: center; padding: 1rem; background: #0f172a; color: #cbd5e1;">
+      &copy; 2025 Nyi Linn. Built with passion and purpose.
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      new Swiper('.swiper', {
+        loop: true,
+        autoplay: { delay: 3000 },
+        pagination: { el: '.swiper-pagination', clickable: true },
+      });
+
+      const darkToggle = document.getElementById('darkToggle');
+      darkToggle.addEventListener('change', function () {
+        document.body.classList.toggle('dark-mode', darkToggle.checked);
+      });
+    });
+  </script>
+</body>
+</html>
